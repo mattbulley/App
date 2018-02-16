@@ -69,7 +69,15 @@ public class Convert implements ActionListener{
 			
 		} else if (T == "decimal2Binary")
 		{
-			int number = Integer.parseInt(T1.getText());
+			int number = 0;
+			try {
+			number = Integer.parseInt(T1.getText());
+			} catch (NumberFormatException ex) {
+				T2.setText("Number to large or wrong format!");
+				
+				return;
+			}
+			
 			char[] array = new char[1];
 			
 			if(number >= 16384) array = new char[15];
@@ -105,7 +113,14 @@ public class Convert implements ActionListener{
 			for(char digit : array)
 				output += (char)(digit + '0');
 	
+			try {
 			T2.setText(output);
+			} catch (ArrayIndexOutOfBoundsException ex) {
+				T2.setText("Number to large");
+			}
+			catch (NumberFormatException ex) {
+				T2.setText("Number to large");
+			}
 		}
 	}
 	
